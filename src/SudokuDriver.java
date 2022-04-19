@@ -4,19 +4,19 @@ public class SudokuDriver {
 
     }
 
-    private boolean inRow(int value, int row, int[] board) {
+    public boolean inRow(int value, int row, int[] board) {
         
     }
 
-    private boolean inColumn(int value, int column, int[] board) {
+    public boolean inColumn(int value, int column, int[] board) {
 
     }
 
-    private boolean inSection(int value, int row, int column, int[] board) {
+    public boolean inSection(int value, int row, int column, int[] board) {
 
     }
 
-    private boolean isValid(int value, int row, int column, int[] board) {
+    public boolean isValid(int value, int row, int column, int[] board) {
 
     }
 }
