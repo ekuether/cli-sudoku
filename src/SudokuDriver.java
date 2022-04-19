@@ -5,7 +5,7 @@ public class SudokuDriver {
     }
 
     private boolean inRow(int value, int row, int[] board) {
-
+        
     }
 
     private boolean inColumn(int value, int column, int[] board) {
@@ -17,6 +17,6 @@ public class SudokuDriver {
     }
 
     private boolean isValid(int value, int row, int column, int[] board) {
-        
+
     }
 }
