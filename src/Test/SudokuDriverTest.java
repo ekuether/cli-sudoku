@@ -1,5 +1,10 @@
 package Test;
 
+import SudokuMain.SudokuDriver;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class SudokuDriverTest {
@@ -17,6 +22,9 @@ public class SudokuDriverTest {
     @Test
     public void testInRow() {
         
+        assertTrue(SudokuDriver.inRow(2,0,testBoard));
+
+        assertFalse(SudokuDriver.inColumn(5,4,testBoard));
     }
 
     @Test
