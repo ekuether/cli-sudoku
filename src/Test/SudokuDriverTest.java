@@ -24,7 +24,7 @@ public class SudokuDriverTest {
         
         assertTrue(SudokuDriver.inRow(2,0,testBoard));
 
-        assertFalse(SudokuDriver.inColumn(5,4,testBoard));
+        assertFalse(SudokuDriver.inRow(5,4,testBoard));
     }
 
     @Test
@@ -38,16 +38,16 @@ public class SudokuDriverTest {
     @Test
     public void testInSection() {
 
-        assertTrue(SudokuDriver.inSection(8, 1, 1, testBoard));
+        assertTrue(SudokuDriver.inSection(8, 1, 0, testBoard));
 
-        assertTrue(SudokuDriver.inSection(7,0,0,testBoard));
+        assertFalse(SudokuDriver.inSection(7,0,0,testBoard));
     }
 
     @Test
     public void testIsValid() {
 
-        assertTrue(SudokuDriver.isValid(7, 0, 1, testBoard));
+        assertFalse(SudokuDriver.isValid(7, 0, 1, testBoard));
 
-        assertFalse(SudokuDriver.isValid(8,0,1,testBoard));
+        assertTrue(SudokuDriver.isValid(7,2,2,testBoard));
     }
 }

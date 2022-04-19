@@ -11,10 +11,6 @@ public class SudokuDriver {
 
         for (int i = 0; i < BOARD_SIZE; i++) {
 
-            if (i == row) {
-                continue;
-            }
-
             if (value == board[row][i]) {
                 return true;
             }
@@ -25,10 +21,6 @@ public class SudokuDriver {
     public static boolean inColumn(int value, int column, int[][] board) {
 
         for (int i = 0; i < BOARD_SIZE; i++) {
-
-            if (i == column) {
-                continue;
-            }
 
             if (value == board[i][column]) {
                 return true;
