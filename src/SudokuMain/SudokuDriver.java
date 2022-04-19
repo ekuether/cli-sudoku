@@ -61,6 +61,8 @@ public class SudokuDriver {
     }
 
     public static boolean isValid(int value, int row, int column, int[][] board) {
-        return false;
+        return !inRow(value, row, board) 
+            && !inColumn(value, column, board) 
+            && !inSection(value, row, column, board);
     }
 }
