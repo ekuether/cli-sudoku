@@ -30,15 +30,24 @@ public class SudokuDriverTest {
     @Test
     public void testInColumn() {
 
+        assertTrue(SudokuDriver.inColumn(1, 3, testBoard));
+
+        assertFalse(SudokuDriver.inColumn(7, 3, testBoard));
     }
 
     @Test
     public void testInSection() {
 
+        assertTrue(SudokuDriver.inSection(8, 1, 1, testBoard));
+
+        assertTrue(SudokuDriver.inSection(7,0,0,testBoard));
     }
 
     @Test
     public void testIsValid() {
 
+        assertTrue(SudokuDriver.isValid(7, 0, 1, testBoard));
+
+        assertFalse(SudokuDriver.isValid(8,0,1,testBoard));
     }
 }
