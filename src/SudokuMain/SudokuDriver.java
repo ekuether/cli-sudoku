@@ -7,9 +7,13 @@ public class SudokuDriver {
 
     }
 
-    public static boolean inRow(int value, int row, int[][] board) {
+    public static boolean inRow(int value, int row, int column, int[][] board) {
 
         for (int i = 0; i < BOARD_SIZE; i++) {
+
+            if (i == column) {
+                continue;
+            }
 
             if (value == board[row][i]) {
                 return true;
@@ -18,9 +22,13 @@ public class SudokuDriver {
         return false;
     }
 
-    public static boolean inColumn(int value, int column, int[][] board) {
+    public static boolean inColumn(int value, int row, int column, int[][] board) {
 
         for (int i = 0; i < BOARD_SIZE; i++) {
+
+            if (i == row) {
+                continue;
+            }
 
             if (value == board[i][column]) {
                 return true;
@@ -53,8 +61,12 @@ public class SudokuDriver {
     }
 
     public static boolean isValid(int value, int row, int column, int[][] board) {
-        return !inRow(value, row, board) 
-            && !inColumn(value, column, board) 
+        return !inRow(value, row, column, board) 
+            && !inColumn(value, row, column, board) 
             && !inSection(value, row, column, board);
+    }
+
+    public static int[][] createValidBoard() {
+        return null;
     }
 }

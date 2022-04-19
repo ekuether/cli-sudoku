@@ -22,17 +22,17 @@ public class SudokuDriverTest {
     @Test
     public void testInRow() {
         
-        assertTrue(SudokuDriver.inRow(2,0,testBoard));
+        assertTrue(SudokuDriver.inRow(2,0,0,testBoard));
 
-        assertFalse(SudokuDriver.inRow(5,4,testBoard));
+        assertFalse(SudokuDriver.inRow(5,4,0,testBoard));
     }
 
     @Test
     public void testInColumn() {
 
-        assertTrue(SudokuDriver.inColumn(1, 3, testBoard));
+        assertTrue(SudokuDriver.inColumn(1, 0, 3, testBoard));
 
-        assertFalse(SudokuDriver.inColumn(7, 3, testBoard));
+        assertFalse(SudokuDriver.inColumn(7, 0, 3, testBoard));
     }
 
     @Test
@@ -49,5 +49,21 @@ public class SudokuDriverTest {
         assertFalse(SudokuDriver.isValid(7, 0, 1, testBoard));
 
         assertTrue(SudokuDriver.isValid(7,2,2,testBoard));
+    }
+
+    @Test
+    public void testCreateValidBoard() {
+        
+        int[][] board = SudokuDriver.createValidBoard();
+
+        for (int i = 0; i < 9; i++) {
+
+            for (int j = 0; j < 9; j++) {
+
+                assertTrue(SudokuDriver.isValid(board[i][j], i, j, board));
+
+            }
+
+        }
     }
 }
