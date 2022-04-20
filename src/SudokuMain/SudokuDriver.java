@@ -4,16 +4,62 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class SudokuDriver {
 
     private static final int BOARD_SIZE = 9;
 
     public static void main(String args[]) {
-        int[][] board = createValidBoard();
-        int[][] spacedBoard = createSpaces(board, 1);
+        int[][] board = null;
+        int[][] spaceBoard = null;
 
-        printBoard(spacedBoard);
+        Scanner get = new Scanner(System.in);
+
+        int options;
+        int difficulty;
+
+        do {
+            if (spaceBoard != null) {
+                printBoard(spaceBoard);
+            }
+            printOptions();
+            options = getUserInt(get);
+    
+
+            switch (options) {
+                case 1:
+                    do {
+                        System.out.print("Easy (1), Medium (2), Hard (3): ");
+                        difficulty = getUserInt(get);
+                    } while (difficulty < 1 || difficulty > 3);
+
+                    board = createValidBoard();
+                    spaceBoard = createSpaces(board, difficulty);
+
+                    break;
+                default:
+                    System.out.println("Wrong command entered, please try again");
+                    break;
+
+            }
+        } while (options != 4);
+
+
+     
+    }
+
+    public static int getUserInt(Scanner get) {
+        String input = get.nextLine();
+        int options;
+
+        try {
+            options = Integer.parseInt(input);
+        }
+        catch(Exception e) {
+            options = -1;
+        }
+        return options;
     }
 
     public static boolean inRow(int value, int row, int column, int[][] board) {
@@ -117,7 +163,7 @@ public class SudokuDriver {
 
         int space;
 
-        while (count < (difficulty * 3 + 11) * 3) {
+        while (count < (difficulty * 2 + 11) * 3) {
 
             space = random.nextInt(BOARD_SIZE * BOARD_SIZE);
 
@@ -173,6 +219,15 @@ public class SudokuDriver {
 
         }
 
+    }
+
+    public static void printOptions() {
+        System.out.println("Please enter the number for one of the options below:");
+        System.out.println("1) Create New Game");
+        System.out.println("2) Check Current Board");
+        System.out.println("3) Place a Number");
+        System.out.println("4) Exit");
+        System.out.print("Your option: ");
     }
 
 }
