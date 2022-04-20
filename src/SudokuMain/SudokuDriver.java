@@ -24,14 +24,14 @@ public class SudokuDriver {
                 printBoard(spaceBoard);
             }
             printOptions();
-            options = getUserInt(get);
+            options = getUserInt();
     
 
             switch (options) {
                 case 1:
                     do {
                         System.out.print("Easy (1), Medium (2), Hard (3): ");
-                        difficulty = getUserInt(get);
+                        difficulty = getUserInt();
                     } while (difficulty < 1 || difficulty > 3);
 
                     board = createValidBoard();
@@ -48,11 +48,11 @@ public class SudokuDriver {
                     for (int i = 0; i < BOARD_SIZE; i++) {
 
                         for (int j = 0; j < BOARD_SIZE; j++) {
-                            if (spaceBoard[i][j] != 0 && spaceBoard[i][j] != board[i][j]) {
-                                spaceBoard[i][j] = 0;
+                            if (spaceBoard[i][j] != -1 && spaceBoard[i][j] != board[i][j]) {
+                                spaceBoard[i][j] = -1;
                                 flag = false;
                             }
-                            flag = flag && spaceBoard[i][j] != 0;
+                            flag = flag && spaceBoard[i][j] != -1;
                         }
                     }
 
@@ -60,6 +60,35 @@ public class SudokuDriver {
                         System.out.println("\nYou solved this board!\n");
                     }
                     break;
+                case 3:
+                    if (spaceBoard == null) {
+                        System.out.println("\nA Board has not been created, please create a new board\n");
+                        break;
+                    }
+                    int row;
+                    int col;
+                    int val;
+                    do {
+                        System.out.print("\nPlease select which row you want to enter (1-9): ");
+                        row = getUserInt() - 1;
+                    } while (row == -1 || row > 0 || row >= BOARD_SIZE);
+                    do {
+                        System.out.print("\nPlease select which column you want to enter (1-9): ");
+                        col = getUserInt() - 1;
+                    } while (col == -1 || col < 0 || col >= BOARD_SIZE);
+                    if (spaceBoard[row][col] != 0) {
+                        System.out.println("\nYou cannot enter a number over another number!");
+                        System.out.println("Use option 2 to get rid of all wrong answers.");
+                        break;
+                    }
+                    do {
+                        System.out.print("\nPlease select which row you want to enter (1-9): ");
+                        val = getUserInt();
+                    } while (val == -1 || val <= 0 || val > BOARD_SIZE);
+                    System.out.println(spaceBoard[row][col]);
+                    spaceBoard[row][col] = val;
+                    break;
+
                 default:
                     System.out.println("\nWrong command entered, please try again\n");
                     break;
@@ -71,7 +100,8 @@ public class SudokuDriver {
      
     }
 
-    public static int getUserInt(Scanner get) {
+    public static int getUserInt() {
+        Scanner get = new Scanner(System.in);
         String input = get.nextLine();
         int options;
 
@@ -81,6 +111,7 @@ public class SudokuDriver {
         catch(Exception e) {
             options = -1;
         }
+        get.close();
         return options;
     }
 
