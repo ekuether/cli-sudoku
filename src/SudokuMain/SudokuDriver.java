@@ -3,6 +3,7 @@ package SudokuMain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SudokuDriver {
 
@@ -98,7 +99,52 @@ public class SudokuDriver {
             }
 
         }
+
         return board;
 
+    }
+
+    public static int[][] createSpaces(int[][] board, int difficulty) {
+
+        int[][] ret = new int[BOARD_SIZE][BOARD_SIZE];
+
+        int count = 0;
+
+        Random random = new Random();
+
+        int space;
+
+        while (count < (difficulty * 3 + 11) * 3) {
+
+            space = random.nextInt(BOARD_SIZE * BOARD_SIZE) + 1;
+
+            int row = space / BOARD_SIZE;
+
+            int column = space % BOARD_SIZE;
+
+            if (ret[row][column] == -1) {
+                continue;
+            }
+
+            else {
+                count++;
+                ret[row][column] = -1;
+            }
+        }
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            
+            for (int j = 0; j < BOARD_SIZE; j++) {
+
+                if (ret[i][j] == -1) {
+                    continue;
+                }
+
+                ret[i][j] = board[i][j];
+
+            }
+        }
+
+        return ret;
     }
 }

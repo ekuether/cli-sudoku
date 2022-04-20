@@ -2,6 +2,7 @@ package Test;
 
 import SudokuMain.SudokuDriver;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -65,5 +66,26 @@ public class SudokuDriverTest {
             }
 
         }
+    }
+
+    @Test
+    public void testCreateSpaces() {
+
+        int[][] board = SudokuDriver.createValidBoard();
+
+        int[][] spaces = SudokuDriver.createSpaces(board, 1);
+
+        int count = 0;
+
+        for (int i = 0; i < 9; i++) {
+            
+            for (int j = 0; j < 9; j++) {
+                if (spaces[i][j] == -1) {
+                    count++;
+                }
+            }
+        }
+
+        assertEquals(42, count);
     }
 }
