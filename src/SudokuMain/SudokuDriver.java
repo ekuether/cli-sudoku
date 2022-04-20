@@ -24,14 +24,14 @@ public class SudokuDriver {
                 printBoard(spaceBoard);
             }
             printOptions();
-            options = getUserInt();
+            options = getUserInt(get);
     
 
             switch (options) {
                 case 1:
                     do {
                         System.out.print("Easy (1), Medium (2), Hard (3): ");
-                        difficulty = getUserInt();
+                        difficulty = getUserInt(get);
                     } while (difficulty < 1 || difficulty > 3);
 
                     board = createValidBoard();
@@ -70,22 +70,21 @@ public class SudokuDriver {
                     int val;
                     do {
                         System.out.print("\nPlease select which row you want to enter (1-9): ");
-                        row = getUserInt() - 1;
-                    } while (row == -1 || row > 0 || row >= BOARD_SIZE);
+                        row = getUserInt(get) - 1;
+                    } while (row < 0 || row >= BOARD_SIZE);
                     do {
                         System.out.print("\nPlease select which column you want to enter (1-9): ");
-                        col = getUserInt() - 1;
-                    } while (col == -1 || col < 0 || col >= BOARD_SIZE);
-                    if (spaceBoard[row][col] != 0) {
+                        col = getUserInt(get) - 1;
+                    } while (col < 0 || col >= BOARD_SIZE);
+                    if (spaceBoard[row][col] != -1) {
                         System.out.println("\nYou cannot enter a number over another number!");
                         System.out.println("Use option 2 to get rid of all wrong answers.");
                         break;
                     }
                     do {
                         System.out.print("\nPlease select which row you want to enter (1-9): ");
-                        val = getUserInt();
-                    } while (val == -1 || val <= 0 || val > BOARD_SIZE);
-                    System.out.println(spaceBoard[row][col]);
+                        val = getUserInt(get);
+                    } while (val <= 0 || val > BOARD_SIZE);
                     spaceBoard[row][col] = val;
                     break;
 
@@ -100,8 +99,7 @@ public class SudokuDriver {
      
     }
 
-    public static int getUserInt() {
-        Scanner get = new Scanner(System.in);
+    public static int getUserInt(Scanner get) {
         String input = get.nextLine();
         int options;
 
@@ -111,7 +109,6 @@ public class SudokuDriver {
         catch(Exception e) {
             options = -1;
         }
-        get.close();
         return options;
     }
 
