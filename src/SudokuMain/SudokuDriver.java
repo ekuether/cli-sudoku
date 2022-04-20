@@ -38,8 +38,30 @@ public class SudokuDriver {
                     spaceBoard = createSpaces(board, difficulty);
 
                     break;
+                case 2:
+                    if (spaceBoard == null) {
+                        System.out.println("\nA Board has not been created, please create a new board\n");
+                        break;
+                    }
+                    boolean flag = true;
+                    System.out.println("Removing all wrong numbers");
+                    for (int i = 0; i < BOARD_SIZE; i++) {
+
+                        for (int j = 0; j < BOARD_SIZE; j++) {
+                            if (spaceBoard[i][j] != 0 && spaceBoard[i][j] != board[i][j]) {
+                                spaceBoard[i][j] = 0;
+                                flag = false;
+                            }
+                            flag = flag && spaceBoard[i][j] != 0;
+                        }
+                    }
+
+                    if (flag) {
+                        System.out.println("\nYou solved this board!\n");
+                    }
+                    break;
                 default:
-                    System.out.println("Wrong command entered, please try again");
+                    System.out.println("\nWrong command entered, please try again\n");
                     break;
 
             }
