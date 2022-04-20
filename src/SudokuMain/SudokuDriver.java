@@ -1,4 +1,9 @@
 package SudokuMain;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class SudokuDriver {
 
     private static final int BOARD_SIZE = 9;
@@ -67,6 +72,33 @@ public class SudokuDriver {
     }
 
     public static int[][] createValidBoard() {
-        return null;
+
+        int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
+
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            
+            Integer [] values = {1,2,3,4,5,6,7,8,9};
+            List<Integer> valueList = Arrays.asList(values); 
+            Collections.shuffle(Arrays.asList(values));
+            valueList.toArray(values);
+
+            for (int column = 0; column < BOARD_SIZE; column++) {
+
+                board[row][column] = values[column];
+                if (!isValid(board[row][column], row, column, board)) {
+
+                    for (int i = 0; i <= column; i++) {
+                        board[row][i] = 0;
+                    }
+
+                    row--;
+                    break;
+                }
+
+            }
+
+        }
+        return board;
+
     }
 }
