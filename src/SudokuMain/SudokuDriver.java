@@ -82,12 +82,14 @@ public class SudokuDriver {
                         break;
                     }
                     do {
-                        System.out.print("\nPlease select which row you want to enter (1-9): ");
+                        System.out.print("\nPlease select which value you want to enter (1-9): ");
                         val = getUserInt(get);
                     } while (val <= 0 || val > BOARD_SIZE);
                     spaceBoard[row][col] = val;
                     break;
-
+                case 4:
+                    break;
+                    
                 default:
                     System.out.println("\nWrong command entered, please try again\n");
                     break;
